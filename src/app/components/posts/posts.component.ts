@@ -10,6 +10,7 @@ import {PostService} from '../../services/post.service';
 })
 export class PostsComponent implements OnInit {
   posts: Post[];
+  singlePost: Post;
   constructor(private postService: PostService) {
   }
 
@@ -18,6 +19,7 @@ export class PostsComponent implements OnInit {
   }
   getBubbleUp(post: Post): void{
     console.log(post);
+    this.singlePost = post;
   }
 
 }
