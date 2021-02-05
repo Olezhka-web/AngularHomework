@@ -10,7 +10,8 @@ import {Post} from '../../models/Post';
 export class PostService {
   url = 'https://jsonplaceholder.typicode.com/posts';
   constructor(private httpClient: HttpClient) { }
-  getPosts(): Observable<Post[]> {
-    return this.httpClient.get<Post[]>(this.url);
+  getPostsByUserId(id: number): Observable<Post[]> {
+    return this.httpClient.get<Post[]>(`${this.url}?userId=${id}`);
   }
 }
+

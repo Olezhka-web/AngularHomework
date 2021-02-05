@@ -23,7 +23,7 @@ export class FullUserComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  goToPosts(post: Post): void {
-    console.log(post);
+  goToPosts(): void {
+    this.router.navigate(['posts'], {relativeTo: this.activatedRoute});
   }
 }

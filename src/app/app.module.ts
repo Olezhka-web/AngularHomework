@@ -10,12 +10,15 @@ import { UserComponent } from './components/user/user.component';
 import { FullUserComponent } from './components/full-user/full-user.component';
 import { PostsComponent } from './components/posts/posts.component';
 import { PostComponent } from './components/post/post.component';
+import {PostResolveService} from './services/resolve/post-resolve.service';
 
 const routes: Routes = [
   {
     path: 'users', component : UsersComponent, resolve: {usersData: UserResolveService},
     children: [
-      {path : ':id', component : FullUserComponent}
+      {path : ':id', component : FullUserComponent, children: [
+          {path: 'posts', component: PostsComponent, resolve: {posts: PostResolveService}}
+        ]}
     ]
     },
   {path: '', redirectTo: 'users', pathMatch: 'full'}

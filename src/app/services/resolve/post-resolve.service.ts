@@ -4,7 +4,7 @@ import {User} from '../../models/User';
 import {Post} from '../../models/Post';
 import {UserService} from '../user/user.service';
 import {PostService} from '../post/post.service';
-import {Resolve} from '@angular/router';
+import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ import {Resolve} from '@angular/router';
 export class PostResolveService implements Resolve<Post[]>{
 
   constructor(private postService: PostService) { }
-  resolve(): Observable<Post[]> | Promise<Post[]> | Post[]{
-    return this.postService.getPosts();
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Post[]> | Promise<Post[]> | Post[]{
+    return this.postService.getPostsByUserId(route.parent.params.id);
   }
 }
